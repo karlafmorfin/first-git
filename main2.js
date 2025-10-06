@@ -1,3 +1,3 @@
- const b = "estamos en la rama master con los cambios de master2"
+ const b = "nuevos cambios para fa"
 
 console.log(a);
