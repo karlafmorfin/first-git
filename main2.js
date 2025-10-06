@@ -1,3 +1,3 @@
- const b = "nuevos cambios para fa"
+ const b = "cambios directos desde master para ejercicio cuando dos personas hacen cambios en el mismo fichero pero en diferentes ramas y el otro ya hizo pull request"
 
 console.log(a);
