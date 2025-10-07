@@ -1,3 +1,3 @@
- const b = "cambios 7 de octubre - tercera manera - cambios para tercera manera, cambios directos desde master para ejercicio cuando dos personas hacen cambios en el mismo fichero pero en diferentes ramas y el otro ya hizo pull request"
+ const b = "cambios 7 de octubre  - cuando dos personas hacen cambios en el mismo fichero pero en diferentes ramas y el otro ya hizo pull request"
 
 console.log(a);
