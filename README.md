@@ -2,15 +2,9 @@
 
 readme es un fichero de documentacion de java para los ficheros
 
-And this will produce a flow chart:
+## UML diagrams
 
-```mermaid
-graph LR
-A[2024] -- me gusta --> B((drawing))
-A --> C(devops)
-B --> D{new life}
-C --> D
-
+You can render UML diagrams using [Mermaid](https://mermaidjs.github.io/). For example, this will produce a sequence diagram:
 
 ```mermaid
 sequenceDiagram
@@ -22,3 +16,4 @@ Note right of John: Bob thinks a long<br/>long time, so long<br/>that the text d
 
 Bob-->Alice: Checking with John...
 Alice->John: Yes... John, how are you?
+```
