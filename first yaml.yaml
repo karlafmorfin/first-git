@@ -1,0 +1,48 @@
+# azure-pipelines.yml
+# Este es un ejemplo básico de una pipeline de CI (Continuous Integration)
+# para una aplicación Node.js. Puedes adaptarlo a tu lenguaje y necesidades.
+
+trigger:
+- main # Esta pipeline se ejecutará automáticamente cada vez que haya cambios en la rama 'main' (o 'master')
+
+# Opcional: Si tienes ramas de características y quieres que se ejecute en PRs
+# pr:
+# - main # También se ejecutará cuando se cree un Pull Request contra la rama 'main'
+
+pool:
+  vmImage: 'ubuntu-latest' # Define el agente de construcción. Puedes usar 'windows-latest' o 'macos-latest' también.
+
+variables:
+  buildConfiguration: 'Release' # Variable para la configuración de la compilación
+  nodeVersion: '16.x' # Versión de Node.js a usar
+
+stages:
+- stage: Build # Define una etapa llamada 'Build'
+  displayName: 'Build and Test'
+  jobs:
+  - job: BuildJob # Define un trabajo llamado 'BuildJob'
+    displayName: 'Build Application'
+    steps:
+    - task: NodeTool@0 # Tarea para instalar Node.js
+      displayName: 'Install Node.js'
+      inputs:
+        versionSpec: $(nodeVersion)
+
+    - script: |
+        npm install # Instala las dependencias del proyecto
+      displayName: 'Install Dependencies'
+
+    - script: |
+        npm run build # Compila tu aplicación (si tienes un script 'build' en package.json)
+      displayName: 'Build Application'
+
+    - script: |
+        npm test # Ejecuta los tests (si tienes un script 'test' en package.json)
+      displayName: 'Run Tests'
+      # continueOnError: true # Descomentar si quieres que la pipeline continúe incluso si los tests fallan
+
+    - publish: $(System.DefaultWorkingDirectory)/dist # Publica los artefactos de la compilación (por ejemplo, la carpeta 'dist')
+      artifact: drop # Nombre del artefacto
+      displayName: 'Publish Build Artifacts'
+      # Nota: Reemplaza '/dist' con la ruta donde tu proceso de compilación genera los archivos listos para desplegar.
+      # Si no hay archivos para publicar, puedes eliminar esta tarea.
